@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: REQUEST-HANDLER
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      routes:
+        - id: schemaService
+          uri: http://10.66.78.3:8100
+          predicates:
+            - Path=/schema/**
+        - id: party
+          uri: lb://party
+          predicates:
+            - Path=/party/**
+        - id: producto
+          uri: lb://product
+          predicates:
+            - Path=/product/**
+        - id: keycloack-connector
+          uri: http://10.66.78.2:3005
+          predicates:
+            - Path=/keycloack/**
+        - id: common
+          uri: lb://common
+          predicates:
+            - Path=/common/**
+        - id: orders
+          uri: lb://orders
+          predicates:
+            - Path=/orders/**
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          "[/**]":
+            allowed-origins: "http://10.66.78.3:3001"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - OPTIONS
+            allowed-headers:
+              - "*"
+            allow-credentials: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://10.66.78.2:32150/realms/Tekingb/protocol/openid-connect/certs
+logging:
+  level:
+    org.springframework.security: TRACE
+    org.springframework.cloud.gateway: TRACE
+    com.felips: TRACE
