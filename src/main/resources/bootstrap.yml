@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: request-handler
+  cloud:
+    kubernetes:
+      config:
+        enabled: true

@@ -1,3 +1,5 @@
+server:
+  port: 8989
 spring:
   application:
     name: REQUEST-HANDLER
@@ -7,7 +9,7 @@ spring:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
       routes:
         - id: schemaService
-          uri: http://10.66.78.3:8100
+          uri: http://10.66.78.2:32201
           predicates:
             - Path=/schema/**
         - id: party

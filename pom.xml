@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.felips</groupId>
 	<artifactId>request-handler</artifactId>
-	<version>1.0</version>
+	<version>1.0.0</version>
 	<name>request-handler</name>
 	<description>Gestiona las llamadas entrantes a la aplicacion</description>
 	<properties>
@@ -19,6 +19,11 @@
 	</properties>
 	<dependencies>
 
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+                    <version>1.1.10.RELEASE</version>
+                </dependency>
 
                 <dependency>
                     <groupId>org.springframework.cloud</groupId>
