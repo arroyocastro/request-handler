@@ -2,7 +2,7 @@ server:
   port: 8989
 spring:
   application:
-    name: REQUEST-HANDLER
+    name: request-handler
   cloud:
     gateway:
       default-filters:
@@ -36,7 +36,7 @@ spring:
         add-to-simple-url-handler-mapping: true
         corsConfigurations:
           "[/**]":
-            allowed-origins: "http://10.66.78.3:3001"
+            allowed-origins: "http://10.66.78.2:32202"
             allowed-methods:
               - GET
               - POST
