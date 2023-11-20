@@ -13,17 +13,17 @@ spring:
           predicates:
             - Path=/schema/**
         - id: party
-          uri: lb://party
+          uri: http://party-api.felips:8087
           predicates:
             - Path=/party/**
+        - id: schema-validate
+          uri: http://schema-validate.felips:3003
+          predicates:
+            - Path=/validate/**
         - id: producto
           uri: lb://product
           predicates:
             - Path=/product/**
-        - id: keycloack-connector
-          uri: http://10.66.78.2:3005
-          predicates:
-            - Path=/keycloack/**
         - id: common
           uri: lb://common
           predicates:
@@ -36,7 +36,7 @@ spring:
         add-to-simple-url-handler-mapping: true
         corsConfigurations:
           "[/**]":
-            allowed-origins: "http://10.66.78.2:32202"
+            allowed-origins: "http://10.66.78.2:32202,http://10.66.78.2:3001 "
             allowed-methods:
               - GET
               - POST
@@ -49,7 +49,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://10.66.78.2:32150/realms/Tekingb/protocol/openid-connect/certs
+          jwk-set-uri: http://10.66.78.2:32150/realms/felips/protocol/openid-connect/certs
 logging:
   level:
     org.springframework.security: TRACE
