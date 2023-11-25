@@ -16,14 +16,22 @@ spring:
           uri: http://party-api.felips:8087
           predicates:
             - Path=/party/**
+        - id: product
+          uri: http://product-api.felips:8088
+          predicates:
+            - Path=/product/**
+        - id: common
+          uri: http://common.felips:8089
+          predicates:
+            - Path=/common/**
+        - id: orders
+          uri: http://orders.felips:8090
+          predicates:
+            - Path=/orders/**
         - id: schema-validate
           uri: http://schema-validate.felips:3003
           predicates:
             - Path=/validate/**
-        - id: producto
-          uri: lb://product
-          predicates:
-            - Path=/product/**
         - id: common
           uri: lb://common
           predicates:
