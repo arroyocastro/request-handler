@@ -21,11 +21,11 @@ spring:
           predicates:
             - Path=/product/**
         - id: common
-          uri: http://common.felips:8089
+          uri: http://common-api.felips:8089
           predicates:
             - Path=/common/**
         - id: orders
-          uri: http://orders.felips:8090
+          uri: http://orders-api.felips:8090
           predicates:
             - Path=/orders/**
         - id: schema-validate
