@@ -8,28 +8,28 @@ spring:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
       routes:
-        - id: schemaService
-          uri: http://10.66.78.2:32201
+        - id: schema-api
+          uri: http://10.66.78.164:32201
           predicates:
             - Path=/schema/**
         - id: party
-          uri: http://party-api.felips:8087
+          uri: http://10.66.78.164:8087
           predicates:
             - Path=/party/**
         - id: product
-          uri: http://product-api.felips:8088
+          uri: http://10.66.78.164:8088
           predicates:
             - Path=/product/**
         - id: common
-          uri: http://common-api.felips:8089
+          uri: http://10.66.78.164:8089
           predicates:
             - Path=/common/**
         - id: orders
-          uri: http://orders-api.felips:8090
+          uri: http://10.66.78.164:8090
           predicates:
             - Path=/orders/**
         - id: schema-validate
-          uri: http://schema-validate.felips:3003
+          uri: http://10.66.78.164:32300
           predicates:
             - Path=/validate/**
         - id: common
@@ -44,7 +44,7 @@ spring:
         add-to-simple-url-handler-mapping: true
         corsConfigurations:
           "[/**]":
-            allowed-origins: "http://10.66.78.2:32202,http://10.66.78.2:3001 "
+            allowed-origins: "http://10.66.78.164:32202,http://10.66.78.164:3001,http://localhost:3001,http://localhost:3002"
             allowed-methods:
               - GET
               - POST
@@ -57,7 +57,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://10.66.78.2:32150/realms/felips/protocol/openid-connect/certs
+          jwk-set-uri: http://10.66.78.164:31491/realms/felivers/protocol/openid-connect/certs
 logging:
   level:
     org.springframework.security: TRACE
