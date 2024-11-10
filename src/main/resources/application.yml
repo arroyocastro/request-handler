@@ -13,19 +13,19 @@ spring:
           predicates:
             - Path=/schema/**
         - id: party
-          uri: http://10.66.78.164:8087
+          uri: http://10.66.78.164:32137
           predicates:
             - Path=/party/**
         - id: product
-          uri: http://10.66.78.164:8088
+          uri: http://10.66.78.164:32138
           predicates:
             - Path=/product/**
         - id: common
-          uri: http://10.66.78.164:8089
+          uri: http://10.66.78.164:32139
           predicates:
             - Path=/common/**
         - id: orders
-          uri: http://10.66.78.164:8090
+          uri: http://10.66.78.164:32140
           predicates:
             - Path=/orders/**
         - id: schema-validate
