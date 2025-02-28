@@ -7,7 +7,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.config.web.server.ServerHttpSecurity.OAuth2ResourceServerSpec;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
 
@@ -36,8 +35,8 @@ public class WebSecurityConfiguration {
                 .authorizeExchange((exchanges) -> exchanges
                         .anyExchange().authenticated()
                 )
-                .oauth2ResourceServer(OAuth2ResourceServerSpec::jwt)
-                .csrf().disable();
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))
+                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 

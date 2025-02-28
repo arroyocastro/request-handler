@@ -3,5 +3,11 @@ spring:
     name: request-handler
   cloud:
     kubernetes:
+      reload:
+        enabled: true
+        mode: polling
+        period: 5000
       config:
         enabled: true
+        sources:
+          - name: request-handler

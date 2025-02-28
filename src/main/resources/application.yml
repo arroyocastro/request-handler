@@ -1,65 +1,16 @@
-server:
-  port: 8989
 spring:
   application:
     name: request-handler
   cloud:
-    gateway:
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
-      routes:
-        - id: schema-api
-          uri: http://10.66.78.164:32201
-          predicates:
-            - Path=/schema/**
-        - id: party
-          uri: http://10.66.78.164:32137
-          predicates:
-            - Path=/party/**
-        - id: product
-          uri: http://10.66.78.164:32138
-          predicates:
-            - Path=/product/**
-        - id: common
-          uri: http://10.66.78.164:32139
-          predicates:
-            - Path=/common/**
-        - id: orders
-          uri: http://10.66.78.164:32140
-          predicates:
-            - Path=/orders/**
-        - id: schema-validate
-          uri: http://10.66.78.164:32300
-          predicates:
-            - Path=/validate/**
-        - id: common
-          uri: lb://common
-          predicates:
-            - Path=/common/**
-        - id: orders
-          uri: lb://orders
-          predicates:
-            - Path=/orders/**
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        corsConfigurations:
-          "[/**]":
-            allowed-origins: "http://10.66.78.164:32202,http://10.66.78.164:3001,http://localhost:3001,http://localhost:3002"
-            allowed-methods:
-              - GET
-              - POST
-              - PUT
-              - OPTIONS
-            allowed-headers:
-              - "*"
-            allow-credentials: true
+    kubernetes:
+      config:
+        enabled: true
+        name: request-handler
+        namespace: default
+        sources:
+          - name: request-handler
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://10.66.78.164:31491/realms/felivers/protocol/openid-connect/certs
-logging:
-  level:
-    org.springframework.security: TRACE
-    org.springframework.cloud.gateway: TRACE
-    com.felips: TRACE
+          jwk-set-uri: http://localhost:8080/realms/felivers/protocol/openid-connect/certs
