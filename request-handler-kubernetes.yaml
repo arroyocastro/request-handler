@@ -46,23 +46,23 @@ data:
             - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
           routes:
             - id: schema-api
-              uri: http://10.66.78.164:32201
+              uri: http://schema-api
               predicates:
                 - Path=/schema/**
             - id: party
-              uri: http://10.66.78.164:32137
+              uri: http://party-api
               predicates:
                 - Path=/party/**
             - id: product
-              uri: http://10.66.78.164:32138
+              uri: http://product-api
               predicates:
                 - Path=/product/**
             - id: common
-              uri: http://10.66.78.164:32139
+              uri: http://common-api
               predicates:
                 - Path=/common/**
             - id: orders
-              uri: http://10.66.78.164:32140
+              uri: http://orders-api
               predicates:
                 - Path=/orders/**
             - id: schema-validate
